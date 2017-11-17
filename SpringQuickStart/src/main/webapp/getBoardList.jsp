@@ -1,16 +1,11 @@
-<%@page import="java.util.List"%>
-<%@page import="com.book.board.impl.BoardDAO"%>
 <%@page import="com.book.board.BoardVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%
-	// 1. 사용자 입력 정보 추출
-	// 2. db 연동 처리
-	BoardVO vo = new BoardVO();
-	BoardDAO boardDAO = new BoardDAO();
-	List<BoardVO> boardList = boardDAO.getBoardList(vo);
-	
-	// 3. 응답 화면 구성
+	// 세션에 저장된 목록을 꺼낸다.
+	List<BoardVO> boardList = (List) session.getAttribute("boardList");
 %>
 
 <!DOCTYPE html>
@@ -20,6 +15,7 @@
 <title>글 목록</title>
 </head>
 <body>
+
 <center>
 	<h1>글 목록</h1>
 	<h3>테스트님 환영합니다..<a href="logout_proc.jsp">로그아웃</a></h3>
@@ -55,7 +51,7 @@
 <% for(BoardVO board : boardList) { %>
 <tr>
 	<td><%= board.getSeq() %></td>
-	<td align="left"><a href="getBoard.jsp?seq=<%= board.getSeq() %>"><%= board.getTitle() %></a></td>
+	<td align="left"><a href="getBoard.do?seq=<%= board.getSeq() %>"><%= board.getTitle() %></a></td>
 	<td><%= board.getWriter() %></td>
 	<td><%= board.getRegDate() %></td>
 	<td><%= board.getCnt() %></td>
