@@ -1,40 +1,41 @@
 package com.book.board.service;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.book.board.old.IController;
 import com.book.board.user.UserVO;
 import com.book.board.user.impl.UserDAO;
 
-public class LoginController implements Controller {
+@Controller
+public class LoginController {
 
-	@Override
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
-		// 1. 사용자 입력 정보 추출
-		String id = request.getParameter("id");
-		String password = request.getParameter("password");
+	@RequestMapping(value="/login.do", method=RequestMethod.GET) 
+	public String loginView(@ModelAttribute("user") UserVO vo) {
+		System.out.println("로그인 화면으로 이동 ");
+		vo.setId("test");
+		vo.setPassword("test123");
+		return "login.jsp";
+	}
+	
+	
+	@RequestMapping(value="/login.do", method=RequestMethod.POST)
+	public String login(@ModelAttribute("user") UserVO vo, UserDAO userDAO, HttpSession session) {
 		
-		
-		// 2. DB 연동 처리
-		UserVO vo = new UserVO();
-		vo.setId(id);
-		vo.setPassword(password);
-		
-		UserDAO userDAO = new UserDAO();
+		System.out.println("로그인 인증 처리 ");
 		UserVO user = userDAO.getUser(vo);
 		
-		// 3. 화면 네비게이션
-		ModelAndView mav = new ModelAndView();
 		if(user != null) {
-			mav.setViewName("redirect:getBoardList.do");
+			session.setAttribute("userName", user.getName());
+			return "redirect:getBoardList.do";
 		} else {
-			mav.setViewName("redirect:login.jsp");
+			return "redirect:login.jsp";
 		}
-		return mav;
 	}
+	
+	
 
 }
