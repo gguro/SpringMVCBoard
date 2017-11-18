@@ -1,11 +1,5 @@
-<%@page import="com.book.board.impl.BoardDAO"%>
-<%@page import="com.book.board.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%
-	BoardVO board = (BoardVO) session.getAttribute("board");
-%>
     
 <!DOCTYPE html >
 <html>
@@ -19,30 +13,30 @@
 <a href = "logout.do">로그 아웃</a>
 <hr>
 <form action="updateBoard.do" method="post">
-<input type="hidden" name="seq" value="<%= board.getSeq() %>" />
+<input type="hidden" name="seq" value="${board.seq}" />
 <table border="1" cellpadding="0" cellspacing="0">
 <tr>
 	<td bgcolor="orange" width="70">제목</td>
-	<td align="left"><input name="title" type="text" value="<%= board.getTitle() %>" /></td>
+	<td align="left"><input name="title" type="text" value="${board.title}" /></td>
 </tr>
 <tr>
 	<td bgcolor="orange">작성자</td>
-	<td align="left"><%= board.getWriter() %></td>
+	<td align="left">${board.writer}</td>
 	
 </tr>
 <tr>
 	<td bgcolor="orange">내용</td>
 	<td align="left"><textarea name="content" cols="40 rows="10">
-		<%= board.getContent() %>
+		${board.content }
 	</textarea></td>
 </tr>
 <tr>
 	<td bgcolor="orange">등록일</td>
-	<td align="left"><%= board.getRegDate() %></td>
+	<td align="left">${board.regDate }</td>
 </tr>	
 <tr>
 	<td bgcolor="orange">조회수</td>
-	<td align="left"><%= board.getCnt() %></td>
+	<td align="left">${board.cnt }</td>
 </tr>
 <tr>
 	<td colspan="2" align="center">
@@ -56,22 +50,11 @@
 
 <hr>
 
-<a href="insertBoard.do">글등록</a>&nbsp;&nbsp;&nbsp;
-<a href="deleteBoard.do">글삭제</a>&nbsp;&nbsp;&nbsp;
+<a href="insertBoard.jsp">글등록</a>&nbsp;&nbsp;&nbsp;
+<a href="deleteBoard.do?seq=${board.seq}">글삭제</a>&nbsp;&nbsp;&nbsp;
 <a href="getBoardList.do">글 목록</a>
 
 </center>
-
-
-
-
-
-
-
-
-
-
-
 
 
 </body>
