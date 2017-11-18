@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- controller 등록  -->
+	<bean id="login" class="com.book.board.service.LoginController"></bean>
+	<bean id="logout" class="com.book.board.service.LogoutController" />
+	<bean id="getBoardList" class="com.book.board.service.GetBoardListController"></bean>
+	<bean id="getBoard" class="com.book.board.service.GetBoardController" />
+	<bean id="insertBoard" class="com.book.board.service.InsertBoardController" />
+	<bean id="deleteBoard" class="com.book.board.service.DeleteBoardController" />
+	<bean id="updateBoard" class="com.book.board.service.UpdateBoardController" />
+	
+
+	<!-- handler mapping 등록 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/login.do">login</prop>
+				<prop key="/logout.do">logout</prop>
+				<prop key="/getBoardList.do">getBoardList</prop>
+				<prop key="/getBoard.do">getBoard</prop>
+				<prop key="/insertBoard.do">insertBoard</prop>
+				<prop key="/updateBoard.do">updateBoard</prop>
+				<prop key="/deleteBoard.do">deleteBoard</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- viewResolver 등록  -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/board/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+</beans>

@@ -1,4 +1,4 @@
-package com.book.board.controller;
+package com.book.board.old;
 
 import java.io.IOException;
 import java.util.List;

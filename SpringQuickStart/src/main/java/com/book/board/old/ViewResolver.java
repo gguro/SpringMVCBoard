@@ -1,4 +1,4 @@
-package com.book.board.controller;
+package com.book.board.old;
 
 public class ViewResolver {
 	public String prefix;
