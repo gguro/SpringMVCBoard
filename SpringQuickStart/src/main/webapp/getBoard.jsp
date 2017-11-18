@@ -16,9 +16,9 @@
 <body>
 <center>
 <h1>글 상세</h1>
-<a href = "logout_proc.jsp">로그 아웃</a>
+<a href = "logout.do">로그 아웃</a>
 <hr>
-<form action="updateBoard_proc.jsp" method="post">
+<form action="updateBoard.do" method="post">
 <input type="hidden" name="seq" value="<%= board.getSeq() %>" />
 <table border="1" cellpadding="0" cellspacing="0">
 <tr>
@@ -56,9 +56,9 @@
 
 <hr>
 
-<a href="insertBoard.jsp">글등록</a>&nbsp;&nbsp;&nbsp;
-<a href="deleteBoard.jsp">글삭제</a>&nbsp;&nbsp;&nbsp;
-<a href="getBoardList.jsp">글 목록</a>
+<a href="insertBoard.do">글등록</a>&nbsp;&nbsp;&nbsp;
+<a href="deleteBoard.do">글삭제</a>&nbsp;&nbsp;&nbsp;
+<a href="getBoardList.do">글 목록</a>
 
 </center>
 
