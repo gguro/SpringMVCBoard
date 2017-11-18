@@ -64,6 +64,12 @@ public class DispatcherServlet extends HttpServlet {
 		
 		
 		
+		// 2. HandlerMapping을 통해 path에 해당하는 Controller 를 검색한다.
+		//IController ctrl = handlerMapping.getController(path);
+				
+		// 3. 검색
+		
+		
 		
 		
 		
