@@ -9,6 +9,8 @@ import com.book.board.BoardVO;
 @Repository("boardDAO")
 public class BoardDAO {
 	
+	// JDBC 관련 변수
+	
 	public void insertBoard(BoardVO vo) {
 		System.out.println(">> insertBoard : " + vo);
 	}
